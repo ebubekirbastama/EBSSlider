@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBS Responsive Slider</title>
+    <style>
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.slider {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; /* Resimleri sınırla */
+    border-radius: 10px; /* Köşe yuvarlama */
+    border: 6px solid transparent; /* Çerçeve */
+    transition: border-color 0.3s ease; /* Çerçeve rengi geçişi */
+}
+
+.slide:hover {
+    border-color: #3498db; /* Hover'da çerçeve rengi */
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease; /* Resim animasyonu */
+}
+
+.slide:hover img {
+    transform: scale(1.1); /* Hover'da büyüme animasyonu */
+}
+
+.caption {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.navigation {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.nav-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Buton geçişi */
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background-color: #fff;
+    color: #000;
+}
+
+    </style>
+    <script>
+    // script.js
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    let slides = document.getElementsByClassName("slide");
+    let navBtns = document.getElementsByClassName("nav-btn");
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    for (let i = 0; i < navBtns.length; i++) {
+        navBtns[i].className = navBtns[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    navBtns[slideIndex-1].className += " active";
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
+}
+
+function currentSlide(n) {
+    slideIndex = n;
+    showSlides();
+}
+
+    </script>
+</head>
+<body>
+    <div class="slider">
+        <div class="slides">
+            <div class="slide">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPyIbuzKgbRavTH-k7Nfo4OSlQV0A1thRJgw5Z_7LqhVYHWO-vlOyAU6zBPhjOPKbb6su9nlpZYz7JbWFLj6qMwhlQBYIPNLc1Z48NIGv-1Rf36aQ65oRrxiVdJJ9_o4ci3a3uemK6DhxOCA-V5rq2ZoqArdGL9OMo8pRRMbC3Wf8ftgxsJ2StOHwB9ugd/s16000-rw/php%20e%C4%9Fitim%20seti.png" alt="Image 1">
+                <div class="caption">Açıklama 1</div>
+            </div>
+            <div class="slide">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5DTfbra8RZaaC3HlOCPdadvX54fcWIMahyphenhyphenq_ZA52eb3oKgZ-669zHimjD7mr8VO3m28IoH9E0rHZHfseXOLNxLoM-CehvpVvHqcljpuBbfIdxN74mmzKhyphenhyphenAl8K8CiDAnI27eVrrUP2nEFs3pnSoaAUNlWd0LbyjGxhNAVQekKApuxo9NsXc7Pno7y8Sbt/s16000-rw/w1.png" alt="Image 2">
+                <div class="caption">Açıklama 2</div>
+            </div>
+            <div class="slide">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9eIxKOupAaW4Urz2PD7CdP-1VBJOwEPZHYrzZ4Vna6Mls-LRgvWxrbptVhV8_7vSpH7PAN0yGrzaCF-bPI6dO2VewnSw1poCsm0qmhZm-7DtT8Gqe7ofNbW-8qBC7Ef5CmVb7WAmrWb-4_MAkQSSNpSGbsEGvtsnyFYXW1oILjdk7P8eVAmHtDIdZJY7H/s16000-rw/2466460948.webp" alt="Image 3">
+                <div class="caption">Açıklama 3</div>
+            </div>
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" onclick="currentSlide(1)">1</button>
+            <button class="nav-btn" onclick="currentSlide(2)">2</button>
+            <button class="nav-btn" onclick="currentSlide(3)">3</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
